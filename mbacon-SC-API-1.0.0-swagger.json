@@ -1,645 +1,599 @@
-{
-  "openapi" : "3.0.0",
-  "servers" : [ {
-    "description" : "SwaggerHub API Auto Mocking",
-    "url" : "https://virtserver.swaggerhub.com/mbacon/SC-API/1.0.0"
-  }, {
-    "description" : "SwaggerHub API Auto Mocking",
-    "url" : "https://virtserver.swaggerhub.com/Texecom/SmartCom-MDB/1.0.0"
-  }, {
-    "description" : "SmartCom",
-    "url" : "https://SmartCom.texe.com/Texecom/SmartCom/1.0.0"
-  } ],
-  "info" : {
-    "version" : "1.0.0",
-    "title" : "smartcom-api",
-    "description" : "SmartCom local API"
-  },
-  "paths" : {
-    "/files" : {
-      "get" : {
-        "description" : "List of files",
-        "operationId" : "getFiles",
-        "responses" : {
-          "200" : {
-            "description" : "List of all available files to download",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "oneOf" : [ {
-                    "$ref" : "#/components/schemas/Files"
-                  } ]
-                }
-              }
-            }
-          },
-          "400" : {
-            "$ref" : "#/components/responses/BadRequest"
-          },
-          "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
-          },
-          "404" : {
-            "$ref" : "#/components/responses/NotFound"
-          },
-          "405" : {
-            "$ref" : "#/components/responses/MethodNotAllowed"
-          },
-          "5XX" : {
-            "$ref" : "#/components/responses/UnexpectedError"
-          }
-        }
-      }
-    },
-    "/files/{file}" : {
-      "parameters" : [ {
-        "name" : "file",
-        "in" : "path",
-        "required" : true,
-        "schema" : {
-          "type" : "string"
-        }
-      } ],
-      "get" : {
-        "description" : "Get  file",
-        "operationId" : "getFile",
-        "responses" : {
-          "200" : {
-            "description" : "Get  logfile",
-            "content" : {
-              "application/octet-stream" : {
-                "schema" : {
-                  "type" : "string",
-                  "format" : "binary"
-                }
-              }
-            }
-          },
-          "202" : {
-            "$ref" : "#/components/responses/Accepted"
-          },
-          "400" : {
-            "$ref" : "#/components/responses/BadRequest"
-          },
-          "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
-          },
-          "403" : {
-            "$ref" : "#/components/responses/Forbidden"
-          },
-          "404" : {
-            "$ref" : "#/components/responses/NotFound"
-          },
-          "405" : {
-            "$ref" : "#/components/responses/MethodNotAllowed"
-          },
-          "5XX" : {
-            "$ref" : "#/components/responses/UnexpectedError"
-          }
-        }
-      }
-    },
-    "/files/log" : {
-      "get" : {
-        "description" : "Get log file",
-        "operationId" : "getLogFile",
-        "responses" : {
-          "200" : {
-            "description" : "Get latest logfile",
-            "content" : {
-              "application/octet-stream" : {
-                "schema" : {
-                  "type" : "string",
-                  "format" : "binary"
-                }
-              }
-            }
-          },
-          "202" : {
-            "$ref" : "#/components/responses/Accepted"
-          },
-          "400" : {
-            "$ref" : "#/components/responses/BadRequest"
-          },
-          "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
-          },
-          "403" : {
-            "$ref" : "#/components/responses/Forbidden"
-          },
-          "404" : {
-            "$ref" : "#/components/responses/NotFound"
-          },
-          "405" : {
-            "$ref" : "#/components/responses/MethodNotAllowed"
-          },
-          "5XX" : {
-            "$ref" : "#/components/responses/UnexpectedError"
-          }
-        }
-      }
-    },
-    "/interfaces" : {
-      "get" : {
-        "description" : "List of interfaces",
-        "operationId" : "getInterface",
-        "responses" : {
-          "200" : {
-            "description" : "List of all network interfaces on unit",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "oneOf" : [ {
-                    "$ref" : "#/components/schemas/Interfaces"
-                  } ]
-                }
-              }
-            }
-          },
-          "400" : {
-            "$ref" : "#/components/responses/BadRequest"
-          },
-          "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
-          },
-          "404" : {
-            "$ref" : "#/components/responses/NotFound"
-          },
-          "405" : {
-            "$ref" : "#/components/responses/MethodNotAllowed"
-          },
-          "5XX" : {
-            "$ref" : "#/components/responses/UnexpectedError"
-          }
-        }
-      }
-    },
-    "/interfaces/{interface}" : {
-      "parameters" : [ {
-        "name" : "interface",
-        "in" : "path",
-        "required" : true,
-        "schema" : {
-          "type" : "string"
-        }
-      } ],
-      "get" : {
-        "description" : "Get info on selected interface",
-        "operationId" : "getInterfaces",
-        "responses" : {
-          "200" : {
-            "description" : "Interface Information",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "oneOf" : [ {
-                    "$ref" : "#/components/schemas/WiFi"
-                  }, {
-                    "$ref" : "#/components/schemas/Ethernet"
-                  }, {
-                    "$ref" : "#/components/schemas/GSM"
-                  } ]
-                }
-              }
-            }
-          },
-          "202" : {
-            "$ref" : "#/components/responses/Accepted"
-          },
-          "400" : {
-            "$ref" : "#/components/responses/BadRequest"
-          },
-          "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
-          },
-          "404" : {
-            "$ref" : "#/components/responses/NotFound"
-          },
-          "405" : {
-            "$ref" : "#/components/responses/MethodNotAllowed"
-          },
-          "5XX" : {
-            "$ref" : "#/components/responses/UnexpectedError"
-          }
-        }
-      }
-    },
-    "/interfaces/{interface}/config" : {
-      "parameters" : [ {
-        "name" : "interface",
-        "in" : "path",
-        "required" : true,
-        "schema" : {
-          "type" : "string"
-        }
-      } ],
-      "get" : {
-        "description" : "Get config on selected interface",
-        "operationId" : "getInterfacesConfig",
-        "responses" : {
-          "200" : {
-            "description" : "Interface Config",
-            "content" : {
-              "application/json" : {
-                "schema" : {
-                  "anyOf" : [ {
-                    "$ref" : "#/components/schemas/IpSettings"
-                  }, {
-                    "$ref" : "#/components/schemas/IpAllocation"
-                  }, {
-                    "$ref" : "#/components/schemas/SSID"
-                  }, {
-                    "$ref" : "#/components/schemas/WifiPassword"
-                  } ]
-                }
-              }
-            }
-          }
-        }
-      },
-      "post" : {
-        "requestBody" : {
-          "content" : {
-            "application/json" : {
-              "schema" : {
-                "anyOf" : [ {
-                  "$ref" : "#/components/schemas/SSID"
-                }, {
-                  "$ref" : "#/components/schemas/WifiPassword"
-                }, {
-                  "$ref" : "#/components/schemas/IpAllocation"
-                }, {
-                  "$ref" : "#/components/schemas/IpSettings"
-                } ]
-              }
-            }
-          }
-        },
-        "operationId" : "Configure settings",
-        "responses" : {
-          "200" : {
-            "description" : "successfully cofigured settings"
-          },
-          "400" : {
-            "$ref" : "#/components/responses/BadRequest"
-          },
-          "401" : {
-            "$ref" : "#/components/responses/Unauthorized"
-          },
-          "404" : {
-            "$ref" : "#/components/responses/NotFound"
-          },
-          "405" : {
-            "$ref" : "#/components/responses/MethodNotAllowed"
-          },
-          "5XX" : {
-            "$ref" : "#/components/responses/UnexpectedError"
-          }
-        }
-      }
-    }
-  },
-  "components" : {
-    "schemas" : {
-      "IpSettings" : {
-        "type" : "object",
-        "properties" : {
-          "IpSettings" : {
-            "allOf" : [ {
-              "$ref" : "#/components/schemas/IPAddress"
-            }, {
-              "$ref" : "#/components/schemas/GatewayIpAddress"
-            }, {
-              "$ref" : "#/components/schemas/Subnet"
-            }, {
-              "$ref" : "#/components/schemas/DNSServers"
-            } ]
-          }
-        }
-      },
-      "IpAllocation" : {
-        "type" : "object",
-        "properties" : {
-          "IpAllocation" : {
-            "type" : "string",
-            "enum" : [ "Static", "DHCPClient" ],
-            "example" : "Static"
-          }
-        }
-      },
-      "SSID" : {
-        "type" : "string",
-        "example" : "MyWifiSSID"
-      },
-      "WifiPassword" : {
-        "type" : "object",
-        "properties" : {
-          "WifiPassword" : {
-            "type" : "string",
-            "format" : "password",
-            "example" : "fasdfdjl&*(2493"
-          }
-        }
-      },
-      "ScanTime" : {
-        "type" : "string",
-        "format" : "date-time",
-        "example" : "2017-07-21T17:32:28Z"
-      },
-      "IPAddress" : {
-        "type" : "object",
-        "properties" : {
-          "IPAddress" : {
-            "type" : "string",
-            "format" : "ipV4",
-            "example" : "10.0.1.1"
-          }
-        }
-      },
-      "GatewayIpAddress" : {
-        "type" : "object",
-        "properties" : {
-          "GatewayIpAddress" : {
-            "type" : "string",
-            "format" : "ipV4",
-            "example" : "10.0.1.1"
-          }
-        }
-      },
-      "Subnet" : {
-        "type" : "object",
-        "properties" : {
-          "Subnet" : {
-            "type" : "string",
-            "format" : "ipV4",
-            "example" : "255.255.255.0"
-          }
-        }
-      },
-      "AvailableSSID" : {
-        "type" : "array",
-        "items" : {
-          "type" : "string",
-          "example" : [ "SSID-1", "SSID-2" ]
-        }
-      },
-      "DNSServer" : {
-        "type" : "array",
-        "items" : {
-          "type" : "string",
-          "format" : "ipV4",
-          "example" : [ "8.8.8.8", "8.8.2.2" ]
-        }
-      },
-      "DNSServers" : {
-        "title" : "DNSServers",
-        "type" : "object",
-        "properties" : {
-          "DNSServers" : {
-            "$ref" : "#/components/schemas/DNSServer"
-          }
-        }
-      },
-      "LinkUp" : {
-        "type" : "boolean",
-        "example" : "true"
-      },
-      "Error" : {
-        "type" : "object",
-        "properties" : {
-          "code" : {
-            "type" : "string"
-          },
-          "message" : {
-            "type" : "string"
-          }
-        },
-        "required" : [ "code", "message" ]
-      },
-      "OutboundComms" : {
-        "type" : "boolean",
-        "example" : true
-      },
-      "Files" : {
-        "title" : "Logfiles",
-        "type" : "object",
-        "properties" : {
-          "Files" : {
-            "$ref" : "#/components/schemas/File"
-          }
-        }
-      },
-      "File" : {
-        "type" : "array",
-        "items" : {
-          "type" : "string",
-          "example" : [ "file1.txt", "file2.txt" ]
-        }
-      },
-      "Interfaces" : {
-        "title" : "Interfaces",
-        "type" : "object",
-        "properties" : {
-          "Interfaces" : {
-            "$ref" : "#/components/schemas/Interface"
-          }
-        }
-      },
-      "Interface" : {
-        "type" : "array",
-        "items" : {
-          "type" : "string",
-          "example" : [ "eth0", "wlan0", "lo" ]
-        }
-      },
-      "ConnectionType" : {
-        "type" : "string",
-        "enum" : [ "3G", "2G" ]
-      },
-      "OperatorName" : {
-        "type" : "string",
-        "example" : "O2"
-      },
-      "SignalStrength" : {
-        "type" : "integer",
-        "minimum" : 0,
-        "maximum" : 5,
-        "example" : 3
-      },
-      "WiFiInfo" : {
-        "title" : "wifi",
-        "type" : "object",
-        "properties" : {
-          "LinkUp" : {
-            "$ref" : "#/components/schemas/LinkUp"
-          },
-          "OutboundComms" : {
-            "$ref" : "#/components/schemas/OutboundComms"
-          },
-          "SSID" : {
-            "$ref" : "#/components/schemas/SSID"
-          },
-          "AvailableSSID" : {
-            "$ref" : "#/components/schemas/AvailableSSID"
-          }
-        }
-      },
-      "WiFi" : {
-        "title" : "wifi",
-        "type" : "object",
-        "properties" : {
-          "WiFi" : {
-            "$ref" : "#/components/schemas/WiFiInfo"
-          }
-        }
-      },
-      "EthernetInfo" : {
-        "title" : "ethernet",
-        "type" : "object",
-        "properties" : {
-          "LinkUp" : {
-            "$ref" : "#/components/schemas/LinkUp"
-          },
-          "OutboundComms" : {
-            "$ref" : "#/components/schemas/OutboundComms"
-          }
-        }
-      },
-      "Ethernet" : {
-        "title" : "ethernet",
-        "type" : "object",
-        "properties" : {
-          "Ethernet" : {
-            "$ref" : "#/components/schemas/EthernetInfo"
-          }
-        }
-      },
-      "GSMInfo" : {
-        "type" : "object",
-        "properties" : {
-          "ScanTime" : {
-            "$ref" : "#/components/schemas/ScanTime"
-          },
-          "OutboundComms" : {
-            "$ref" : "#/components/schemas/OutboundComms"
-          },
-          "Networks" : {
-            "type" : "array",
-            "items" : {
-              "type" : "object",
-              "properties" : {
-                "connectionType" : {
-                  "$ref" : "#/components/schemas/ConnectionType"
-                },
-                "OperatorName" : {
-                  "$ref" : "#/components/schemas/OperatorName"
-                },
-                "SignalStrength" : {
-                  "$ref" : "#/components/schemas/SignalStrength"
-                }
-              }
-            }
-          }
-        }
-      },
-      "GSM" : {
-        "type" : "object",
-        "properties" : {
-          "GSM" : {
-            "$ref" : "#/components/schemas/GSMInfo"
-          }
-        }
-      }
-    },
-    "responses" : {
-      "BadRequest" : {
-        "description" : "Bad request",
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/Error"
-            }
-          }
-        }
-      },
-      "Unauthorized" : {
-        "description" : "Unauthorized",
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/Error"
-            }
-          }
-        }
-      },
-      "NotFound" : {
-        "description" : "Not Found",
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/Error"
-            }
-          }
-        }
-      },
-      "Forbidden" : {
-        "description" : "Forbidden if the user does not have read permission.",
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/Error"
-            }
-          }
-        }
-      },
-      "MethodNotAllowed" : {
-        "description" : "Method not Allowed",
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/Error"
-            }
-          }
-        }
-      },
-      "UnexpectedError" : {
-        "description" : "Method not Allowed",
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/Error"
-            }
-          }
-        }
-      },
-      "Accepted" : {
-        "description" : "The request has been accepted for processing, but the processing has not been completed. Retry after time in header",
-        "headers" : {
-          "Retry-After" : {
-            "description" : "retry this request after this period (in seconds)",
-            "schema" : {
-              "format" : "int32",
-              "type" : "integer"
-            }
-          }
-        },
-        "content" : {
-          "application/json" : {
-            "schema" : {
-              "$ref" : "#/components/schemas/Error"
-            }
-          }
-        }
-      }
-    },
-    "securitySchemes" : {
-      "BasicAuth" : {
-        "type" : "http",
-        "scheme" : "basic"
-      }
-    }
-  },
-  "security" : [ {
-    "BasicAuth" : [ ]
-  } ]
-}
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: smartcom-api
+  description: SmartCom local API
+paths:
+  '/files':
+    get:
+      description: List of files
+      operationId: getFiles
+      responses:
+        '200':
+          description: List of all available files to download
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Files' 
+        '400':
+          $ref: '#/components/responses/BadRequest' 
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+        '404':
+          $ref: '#/components/responses/NotFound' 
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed' 
+        '5XX':
+          $ref: '#/components/responses/UnexpectedError' 
+  '/files/{file}':
+    parameters:
+      - name: file
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      description: Get  file
+      operationId: getFile
+      responses:
+        '200':
+          description: Get  logfile
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '202':
+          $ref: '#/components/responses/Accepted' 
+        '400':
+          $ref: '#/components/responses/BadRequest' 
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+        '403':
+          $ref: '#/components/responses/Forbidden' 
+        '404':
+          $ref: '#/components/responses/NotFound' 
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed' 
+        '5XX':
+          $ref: '#/components/responses/UnexpectedError' 
+  '/files/log':
+    get:
+      description: Get log file
+      operationId: getLogFile
+      responses:
+        '200':
+          description: Get latest logfile
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '202':
+          $ref: '#/components/responses/Accepted' 
+        '400':
+          $ref: '#/components/responses/BadRequest' 
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+        '403':
+          $ref: '#/components/responses/Forbidden' 
+        '404':
+          $ref: '#/components/responses/NotFound' 
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed' 
+        '5XX':
+          $ref: '#/components/responses/UnexpectedError' 
+  '/managedMode/status':
+    get:
+      description: Gets Managed mode status, return if config is ok or if there were erorrs
+      operationId: getMMStatus
+      responses:
+        '200':
+          description: array of messages for status
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/MMStatus' 
+        '400':
+          $ref: '#/components/responses/BadRequest' 
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+        '404':
+          $ref: '#/components/responses/NotFound' 
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed' 
+        '5XX':
+          $ref: '#/components/responses/UnexpectedError' 
+  '/managedMode/appcode':
+    get:
+      description: Gets System Info
+      operationId: getSysInfo
+      responses:
+        '200':
+          description: SysInfo
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/AppCode' 
+        '400':
+          $ref: '#/components/responses/BadRequest' 
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+        '404':
+          $ref: '#/components/responses/NotFound' 
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed' 
+        '5XX':
+          $ref: '#/components/responses/UnexpectedError' 
+  '/system/info':
+    get:
+      description: Gets Managed mode app code
+      operationId: getAppCode
+      responses:
+        '200':
+          description: AppCode
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SerialNumber:
+                    $ref: '#/components/schemas/SystemSerialNumber' 
+                  GUID:
+                    $ref: '#/components/schemas/SystemGUID' 
+                  PanelVersion:
+                    $ref: '#/components/schemas/SystemPanelVersion' 
+                  SmartComVersion:
+                    $ref: '#/components/schemas/SystemSmartComVersion' 
+        '400':
+          $ref: '#/components/responses/BadRequest' 
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+        '404':
+          $ref: '#/components/responses/NotFound' 
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed' 
+        '5XX':
+          $ref: '#/components/responses/UnexpectedError' 
+  '/interfaces':
+    get:
+      description: List of interfaces
+      operationId: getInterface
+      responses:
+        '200':
+          description: List of all network interfaces on unit
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Interfaces:
+                    $ref: '#/components/schemas/Interfaces' 
+        '400':
+          $ref: '#/components/responses/BadRequest' 
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+        '404':
+          $ref: '#/components/responses/NotFound' 
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed' 
+        '5XX':
+          $ref: '#/components/responses/UnexpectedError' 
+  '/interfaces/{interface}':
+    parameters:
+      - name: interface
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      description: Get info on selected interface
+      operationId: getInterfaces
+      responses:
+        '200':
+          description: Interface Information
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/WiFi' 
+                  - $ref: '#/components/schemas/Ethernet'     
+                  - $ref: '#/components/schemas/GSM'    
+        '202':
+          $ref: '#/components/responses/Accepted' 
+        '400':
+          $ref: '#/components/responses/BadRequest' 
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+        '404':
+          $ref: '#/components/responses/NotFound' 
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed' 
+        '5XX':
+          $ref: '#/components/responses/UnexpectedError'    
+  '/interfaces{interface}/rescan':
+    parameters:
+      - name: interface
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      description: Rescan available connections for this interface, currently only valid for wlan-ap and ppp0 (GSM)
+      operationId: getRescan
+      responses:
+        '200':
+          description: Trigger rescan
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/Rescan' 
+        '400':
+          $ref: '#/components/responses/BadRequest' 
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+        '404':
+          $ref: '#/components/responses/NotFound' 
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed' 
+        '5XX':
+          $ref: '#/components/responses/UnexpectedError'     
+  '/interfaces/{interface}/config':
+    parameters:
+      - name: interface
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      description: Get config on selected interface
+      operationId: getInterfacesConfig
+      responses:
+        '200':
+          description: Interface Config
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  IPSettings:
+                    $ref: '#/components/schemas/IpSettings'    
+                  IpAllocation:
+                    $ref: '#/components/schemas/IpAllocation'  
+                  ConnectedSSID:
+                    $ref: '#/components/schemas/SSID'    
+    post:
+      requestBody:
+        content:
+           application/json:
+            schema:
+              type: object
+              properties:
+                IpSettings:
+                  $ref: '#/components/schemas/IpSettings'    
+                IpAllocation:
+                  $ref: '#/components/schemas/IpAllocation'    
+                WifiConnectionInfo:
+                  $ref: '#/components/schemas/WifiConnectionInfo'     
+      operationId: Configure settings
+      responses:
+        '200':
+          description: successfully cofigured settings
+        '400':
+          $ref: '#/components/responses/BadRequest' 
+        '401':
+          $ref: '#/components/responses/Unauthorized' 
+        '404':
+          $ref: '#/components/responses/NotFound' 
+        '405':
+          $ref: '#/components/responses/MethodNotAllowed' 
+        '5XX':
+          $ref: '#/components/responses/UnexpectedError' 
+components:
+  schemas:
+    SystemSerialNumber:
+      description: Serial Number
+      type: string
+      example: 'AVA1234567'
+    SystemGUID:
+      description: GUID
+      type: string
+      example: '1234567890c12c34568e890c1234e5e6'
+    SystemPanelVersion:
+      description: Panel Version
+      type: string
+      example: 'Elite 24 V6.01.01'
+    SystemSmartComVersion:
+      description: SmartComVersion
+      type: string
+      example: 'V04.00.01'
+    IpSettings:  
+      type: object
+      properties:
+        IpSettings:  
+          allOf:
+            - $ref: '#/components/schemas/IPAddress' 
+            - $ref: '#/components/schemas/GatewayIpAddress'   
+            - $ref: '#/components/schemas/Subnet' 
+            - $ref: '#/components/schemas/DNSServers'   
+    IpAllocation:  
+      type: string
+      enum:
+        - Static
+        - DHCPClient
+      example: 'Static'
+    SSID:
+      description: Currently only valid for wlan0, SSID currently connected to
+      type: string
+      example: 'MyWifiSSID'
+    WifiConnectionInfo:
+      type: object
+      properties:
+        WifiPassword:
+          type: string
+          format: password
+          example: 'SVSRIWGMEW'
+        SSID:
+          type: string
+          example: 'SSID-23'
+    ScanTime:
+      type: string
+      format: date-time
+      example: '2017-07-21T17:32:28Z'
+    IPAddress:
+      type: object
+      properties:
+        IPAddress:
+          type: string
+          format: ipV4
+          example: '10.0.1.1'
+    GatewayIpAddress:
+      type: object
+      properties:
+        GatewayIpAddress:
+          type: string
+          format: ipV4
+          example: '10.0.1.1'
+    MacAddress:
+        type: string
+        pattern: '^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$'
+        example: '10:23:AB:12:D5:F6'
+    Subnet:
+      type: object
+      properties:
+        Subnet:
+          type: string
+          format: ipV4
+          example: '255.255.255.0'
+    AvailableWiFiNetworks: 
+      type: array
+      items: 
+        properties:
+          SSID:
+            type: string
+            example: "SSID1"
+          RSSI:
+            type: integer
+            example: -50
+    DNSServer: 
+      type: array
+      items: 
+        type: string
+        format: ipV4
+        example: ['8.8.8.8','8.8.2.2']   
+    DNSServers: 
+      title: DNSServers
+      type: object
+      properties:
+        DNSServers:  
+          $ref: '#/components/schemas/DNSServer'  
+    LinkUp:
+      type: boolean
+      example: 'true'
+    RetryAfter:
+      format: "int32"
+      type: "integer"    
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      required:
+        - code
+        - message
+    OutboundComms:
+      type: boolean 
+      example: true
+    Files:
+      title: Logfiles
+      type: object
+      properties:
+        Files:  
+          $ref: '#/components/schemas/File' 
+    File:
+      type: array
+      items:
+        type: string
+        example: ['file1.txt','file2.txt'] 
+    AppCode: 
+      type: object
+      properties:
+        AppCode:
+          type: string
+          pattern: '^[0-9]{6,6}$'
+          example: '456287'
+    MMStatus:    
+      title: MM Status
+      type: object
+      properties:
+        Status:  
+          $ref: '#/components/schemas/MMStat'  
+    MMStat:
+      type: array
+      items:
+        type: object
+        properties: 
+          code: 
+            type: integer
+            example: 34
+          message: 
+            type: string
+            example: 'No issues'
+    ConnectedNetwork:  
+      type: object
+      properties:
+        Carrier:
+          $ref: '#/components/schemas/Carrier' 
+        ConnectionType:
+          $ref: '#/components/schemas/ConnectionType'   
+    Interfaces:
+      type: array
+      items:
+        type: string
+        example: ['eth0','wlan0','lo','ppp0', 'wlan-ap']
+    ConnectionType: 
+      type: string
+      enum:
+        - "4G"
+        - "3G"
+        - "2G"
+    Carrier: 
+      type: string
+      example: 'O2 UK (Telefonica)'      
+    SignalStrength: 
+      type: integer
+      minimum: -199
+      maximum: 0
+      example: -67
+    WiFiInfo:
+      title: wifi
+      type: object
+      properties:
+        LinkUp:  
+          $ref: '#/components/schemas/LinkUp' 
+        MacAddress:  
+          $ref: '#/components/schemas/MacAddress' 
+        OutboundComms:  
+          $ref: '#/components/schemas/OutboundComms' 
+        SSID:  
+          $ref: '#/components/schemas/SSID' 
+        AvailableWiFiNetworks:  
+          $ref: '#/components/schemas/AvailableWiFiNetworks'    
+    WiFi: 
+      title: wifi
+      type: object
+      properties:
+        WiFi:  
+          $ref: '#/components/schemas/WiFiInfo'          
+    EthernetInfo: 
+      title: ethernet
+      type: object
+      properties: 
+        LinkUp:  
+          $ref: '#/components/schemas/LinkUp' 
+        MacAddress:  
+          $ref: '#/components/schemas/MacAddress' 
+        OutboundComms:  
+          $ref: '#/components/schemas/OutboundComms'  
+    Ethernet: 
+      title: ethernet
+      type: object
+      properties: 
+        Ethernet:  
+          $ref: '#/components/schemas/EthernetInfo' 
+    GSMInfo: 
+      type: object
+      properties: 
+        ScanTime:  
+          $ref: '#/components/schemas/ScanTime' 
+        OutboundComms:  
+          $ref: '#/components/schemas/OutboundComms' 
+        ConnectedNetwork:  
+          $ref: '#/components/schemas/ConnectedNetwork' 
+        Networks: 
+          type: array
+          items: 
+            type: object
+            properties: 
+              ConnectionType: 
+                $ref: '#/components/schemas/ConnectionType' 
+              Carrier: 
+                $ref: '#/components/schemas/Carrier' 
+              SignalStrength: 
+                $ref: '#/components/schemas/SignalStrength' 
+    GSM: 
+      type: object
+      properties: 
+        GSM:  
+          $ref: '#/components/schemas/GSMInfo' 
+    Rescan:
+      type: object
+      properties:
+        scanCompleteTime:
+          type: integer
+          description: 'Unit of time is in seconds'
+          example: 30 
+        message:
+          type: string
+          example: "Scan will complete after supplied time"
+      required:
+        - scanCompleteTime
+        - message
+  responses:
+      BadRequest:
+        description: Bad request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Error'
+      Unauthorized:
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Error'
+      NotFound:
+        description: Not Found
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Error'
+      Forbidden:
+        description: Forbidden if the user does not have read permission.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Error'
+      MethodNotAllowed:
+        description: Method not Allowed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Error'
+      UnexpectedError:
+        description: Method not Allowed
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Error'
+      Accepted:
+        description: The request has been accepted for processing, but the processing has not been completed. Retry after time in header
+        headers:
+          Retry-After:
+            description: retry this request after this period (in seconds)
+            schema:
+              $ref: '#/components/schemas/RetryAfter'
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Error'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+security:
+  - BasicAuth: []
