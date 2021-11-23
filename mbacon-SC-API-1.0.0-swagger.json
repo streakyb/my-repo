@@ -212,7 +212,7 @@ paths:
           $ref: '#/components/responses/MethodNotAllowed' 
         '5XX':
           $ref: '#/components/responses/UnexpectedError'    
-  '/interfaces{interface}/rescan':
+  '/interfaces/{interface}/rescan':
     parameters:
       - name: interface
         in: path
